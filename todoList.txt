@@ -23,5 +23,7 @@ thêm cái shop mua xe :3 mua nhân vật
 
 thêm cái biểu đồ 
 
+nếu quá rảnh lon thì thêm một mode con khủng long để luyện tập
+
 // thiếu gì ngân đù bổ sung đi
 //òa

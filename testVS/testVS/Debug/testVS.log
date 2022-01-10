@@ -1,3 +1,0 @@
-﻿  testVS.cpp
-D:\Studying\GIT\TypinGame\testVS\testVS\testVS.cpp(9,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  testVS.vcxproj -> D:\Studying\GIT\TypinGame\testVS\Debug\testVS.exe
