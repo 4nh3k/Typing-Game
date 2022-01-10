@@ -3,9 +3,25 @@ cho cái chữ lên màn hình
 cho cái chỗ nhập lên màn hình
 tính số lần nhập đúng sai
 tính wpm
+
+2 chế độ: Luyện tập & Thi đấu
+****Thi đấu******
 cho cái xe nó chạy
+	có cần cái nhập được chuỗi đúng càng dài thì chạy càng nhanh không :v 
 thêm một thằng bot
 xem ai thắng ai thua
+*****************
+
+****Luyện tập****
+2 làn đường
+Màn hình chạy từ từ từ phải qua (chạy từ từ thôi :v không thì chia 3 độ khó)
+Gặp một vật cản thì gõ đúng từ để xe lách qua làn đường khác
+Gõ chậm quá thì màn hình chạy dồn xe vào biên bên trái là thua
+*****************
+
+thêm cái shop mua xe :3 mua nhân vật
+
 thêm cái biểu đồ 
 
 // thiếu gì ngân đù bổ sung đi
+//òa
