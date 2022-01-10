@@ -1,4 +1,11 @@
-the game
-wpm calculation
-accuracy calculation
-record of previos test
+cho cái xe lên màn hình
+cho cái chữ lên màn hình
+cho cái chỗ nhập lên màn hình
+tính số lần nhập đúng sai
+tính wpm
+cho cái xe nó chạy
+thêm một thằng bot
+xem ai thắng ai thua
+thêm cái biểu đồ 
+
+// thiếu gì ngân đù bổ sung đi
