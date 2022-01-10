@@ -1,0 +1,4 @@
+the game
+wpm calculation
+accuracy calculation
+record of previos test
