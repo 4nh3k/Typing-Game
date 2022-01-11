@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7753ebe2-86f2-4ba8-8424-605aec856015": {
+      "ProjectGuid": "7753ebe2-86f2-4ba8-8424-605aec856015",
+      "DisplayName": "Typing Game",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
