@@ -1,32 +1,46 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Animation.h"
+using sf::Vector2f;
+using sf::Event;
+using std::cout;
+using sf::Keyboard;
+
+int const WINDOW_WIDTH = 700;
+int const WINDOW_HEIGHT = 550;
+
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(900, 500), "SFML-Tutorial", sf::Style::Close);
-    window.setFramerateLimit(60);
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Typing Corona", sf::Style::Close);
+	
+	sf::Clock clock;
+	float deltaTime = 0.f;
+	sf::Texture run;
+	run.loadFromFile("../Data/run.png");
 
-    sf::RectangleShape rectang(sf::Vector2f(400, 220));
+	Animation Player(run, sf::Vector2i(3, 1), 0.1f);
 
-    rectang.setPosition(250, 140);
-    rectang.setFillColor(sf::Color::Yellow);
+	while (window.isOpen())
+	{
+		deltaTime = clock.restart().asSeconds();
+		Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+			{
+				window.close();
+			}
+			
+		}
+		
+		Player.Update(deltaTime);
+		//ve gi thi cung ve duoi cai nay
+		window.clear(sf::Color::White);
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::EventType::Closed)
-            {
-                window.close();
-            }
-        }
-
-        window.clear();
-
-        window.draw(rectang);
-
-        window.display();
-    }
-
+		window.draw(Player);
+		// end the current frame
+		window.display();
+	}
     return 0;
 }
