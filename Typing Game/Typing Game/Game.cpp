@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Animation.h"
 
 #pragma region Public Functions
 
@@ -37,8 +38,12 @@ void Game::render()
 
 	//Draw game objects here
 
-
 	this->window->display();
+}
+
+void Game::setDeltaTime(float deltaTime)
+{
+	this->deltaTime = deltaTime;
 }
 
 #pragma endregion
@@ -48,6 +53,9 @@ void Game::render()
 void Game::initVariables()
 {
 	window = nullptr;
+	deltaTime = 0;
+	run.loadFromFile("../Data/run.png");
+	player = Animation(run, Vector2i(3,1), 0.1f);
 }
 
 void Game::initWindow()
@@ -84,6 +92,7 @@ void Game::updateMousePos()
 	mousePosWindow = Mouse::getPosition();
 	mousePosView = this->window->mapPixelToCoords(mousePosWindow);
 }
+
 
 void Game::updateText()
 {
