@@ -9,7 +9,6 @@
 #include <ctime>
 #include <string>
 #include <sstream>
-#include "Animation.h"
 
 using namespace std;
 using namespace sf;
@@ -25,9 +24,6 @@ private:
 	Font font;
 	Vector2i mousePosWindow;
 	Vector2f mousePosView;
-	Texture run;
-	Animation player;
-	float deltaTime;
 	
 	// Game logic
 	unsigned points;
@@ -50,7 +46,6 @@ public:
 	virtual ~Game();
 	void update();
 	void render();
-	void setDeltaTime(float deltaTime);
 	const bool isRunning() const;
 	const bool endGame() const;
 };

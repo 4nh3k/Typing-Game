@@ -1,7 +1,8 @@
 #include "Game.h"
-#include "Animation.h"
+#include "TextBox.h"
 
 #pragma region Public Functions
+TextBox textbox;
 
 Game::Game()
 {
@@ -29,7 +30,6 @@ void Game::update()
 {
 	pollEvents();
 	updateMousePos();
-	updateText();
 }
 
 void Game::render()
@@ -37,13 +37,9 @@ void Game::render()
 	this->window->clear(Color::Black);
 
 	//Draw game objects here
+	renderText();
 
 	this->window->display();
-}
-
-void Game::setDeltaTime(float deltaTime)
-{
-	this->deltaTime = deltaTime;
 }
 
 #pragma endregion
@@ -53,9 +49,6 @@ void Game::setDeltaTime(float deltaTime)
 void Game::initVariables()
 {
 	window = nullptr;
-	deltaTime = 0;
-	run.loadFromFile("../Data/run.png");
-	player = Animation(run, Vector2i(3,1), 0.1f);
 }
 
 void Game::initWindow()
@@ -66,7 +59,7 @@ void Game::initWindow()
 
 void Game::initFontandText()
 {
-
+	
 }
 
 #pragma endregion
@@ -82,7 +75,9 @@ void Game::pollEvents()
 		case Event::Closed:
 			this->window->close(); break;
 		case Event::KeyPressed:
-			if (event.key.code == Keyboard::Escape) this->window->close(); break;
+			if (event.key.code == Keyboard::Escape) this->window->close();
+			else if (event.key.code == Keyboard::Enter) textbox.setSelected(true);  break;
+		case Event::TextEntered: textbox.updateText(event); break;
 		}
 	}
 }
@@ -93,10 +88,9 @@ void Game::updateMousePos()
 	mousePosView = this->window->mapPixelToCoords(mousePosWindow);
 }
 
-
 void Game::updateText()
 {
-
+	textbox.updateText(event);
 }
 
 #pragma endregion
@@ -105,7 +99,7 @@ void Game::updateText()
 
 void Game::renderText()
 {
-
+	textbox.renderText(*this->window);
 }
 #pragma endregion
 
