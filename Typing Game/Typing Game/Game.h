@@ -1,15 +1,24 @@
 #pragma once
+
+/*
+	@SOME NOTES
+
+	- Ctrl + . : create function from .h to .cpp
+	- Ctrl + K + C : comment
+	- Ctrl + K + U : uncomment
+
+*/
 #pragma region Libararies and Namespaces
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Network.hpp>
 #include <iostream>
+#include <vector>
 #include <ctime>
-#include <string>
 #include <sstream>
-#include "Animation.h"
 
 using namespace std;
 using namespace sf;
@@ -19,38 +28,54 @@ using namespace sf;
 class Game
 {
 private:
-	// something for window
-	RenderWindow* window;
-	Event event;
-	Font font;
-	Vector2i mousePosWindow;
-	Vector2f mousePosView;
-	Texture run;
-	Animation player;
-	float deltaTime;
-	
-	// Game logic
-	unsigned points;
-	bool isEnd;
+	sf::Event event;
+	sf::VideoMode vidMode;
+	sf::Vector2i mousePosWindow;
+	sf::Vector2f mousePosView;
 
-	// functions for game initialization
+	//resources
+	sf::Font font;
+	sf::Text uiText;
+
+	//game logic
+	int health;
+	float enemySpawnTimer, enemySpawnTimerMax;
+	int maxEnemies;
+	bool mouseHeld;
+	bool endGame;
+
+	//game objects
+	sf::RectangleShape enemy;
+	vector <sf::RectangleShape> enemies;
+
 	void initVariables();
 	void initWindow();
-	void initFontandText();
+	void initEnemy();
+	void initFont();
+	void initText();
 
-	// functions for game running
 	void pollEvents();
-	void updateMousePos();
+
+	void spawnEnemy();
+	void updateEnemies();
 	void updateText();
-	void renderText();
+	void updateMousePosition();
+
+	void renderEnemies(sf::RenderTarget& target);
+	void renderText(sf::RenderTarget& target);
 
 public:
+	RenderWindow* window;
+	unsigned points;
+
 	//instructor, destructor
-	Game();
+	Game(int difficulty);
 	virtual ~Game();
+	int difficulty;
+	//public functions for main
+	const bool running() const;
+	const bool isEndGame() const;
 	void update();
 	void render();
-	void setDeltaTime(float deltaTime);
-	const bool isRunning() const;
-	const bool endGame() const;
 };
+
