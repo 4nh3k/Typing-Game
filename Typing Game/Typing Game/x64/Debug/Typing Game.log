@@ -1,4 +1,13 @@
 ﻿  Game.cpp
+C:\Users\Admin\source\repos\Typing-Game\Typing Game\Typing Game\Game.cpp(58,64): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
   main.cpp
   Generating Code...
-  Typing Game.vcxproj -> C:\Users\Admin\Source\Repos\Typing-Game\Typing Game\x64\Debug\Typing Game.exe
+  Typing Game.vcxproj -> C:\Users\Admin\source\repos\Typing-Game\Typing Game\x64\Debug\Typing Game.exe

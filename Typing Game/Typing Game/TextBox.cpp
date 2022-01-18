@@ -66,7 +66,7 @@ void TextBox::initText()
 	if (selected) text.setString("_");
 	else text.setString("");
 	text.setCharacterSize(25);
-	text.setFillColor(Color::White);
+	text.setFillColor(Color::Black);
 	text.setPosition(Vector2f(300.f, 300.f));
 }
 

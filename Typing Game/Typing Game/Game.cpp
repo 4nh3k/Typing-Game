@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "TextBox.h"
-
+#include "Background.h"
 #pragma region Public Functions
 TextBox textbox;
 
@@ -26,6 +26,7 @@ const bool Game::endGame() const
 	return isEnd;
 }
 
+
 void Game::update()
 {
 	pollEvents();
@@ -34,9 +35,11 @@ void Game::update()
 
 void Game::render()
 {
-	this->window->clear(Color::Black);
+	this->window->clear(Color::White);
+	
 
 	//Draw game objects here
+	renderBackground();
 	renderText();
 
 	this->window->display();
@@ -48,12 +51,17 @@ void Game::render()
 
 void Game::initVariables()
 {
+	WINDOW_HEIGHT = 700;
+	WINDOW_WIDTH = 1400;
+	background.loadFromFile("../Data/background.png");
+	b1 = Background(background, 300, Vector2f(0, 500));
+	b2 = Background(background, 300, Vector2f(background.getSize().x, 500));
 	window = nullptr;
 }
 
 void Game::initWindow()
 {
-	window = new RenderWindow(VideoMode(800, 800), "Typing racing", Style::Close | Style::Titlebar);
+	window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Typing racing", Style::Close | Style::Titlebar);
 	window->setFramerateLimit(60);
 }
 
@@ -92,7 +100,10 @@ void Game::updateText()
 {
 	textbox.updateText(event);
 }
-
+void Game::setDeltaTime(float deltaTime)
+{
+	this->deltaTime = deltaTime;
+}
 #pragma endregion
 
 #pragma region Render
@@ -100,6 +111,13 @@ void Game::updateText()
 void Game::renderText()
 {
 	textbox.renderText(*this->window);
+}
+void Game::renderBackground()
+{
+	b1.Update(deltaTime);
+	b2.Update(deltaTime);
+	this->window->draw(b1);
+	this->window->draw(b2);
 }
 #pragma endregion
 
