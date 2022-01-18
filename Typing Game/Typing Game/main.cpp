@@ -6,7 +6,7 @@ int main()
     Clock clock;
     while (game.isRunning())
     {
-        game.setDeltaTime(clock.restart().asSeconds());
+        //game.setDeltaTime(clock.restart().asSeconds());
         game.update();
         game.render();
     }
