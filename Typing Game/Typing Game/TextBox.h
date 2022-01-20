@@ -32,12 +32,12 @@ private:
 	ostringstream strtext;
 	RectangleShape border;
 	bool hasLimit, selected;
-	int limit;
+	int limit; //bao nhieeu ddaay nhir
 
 	void initVariables();
 	void initFont();
 	void initText();
-	void initBorder();
+	void initBorder(); 
 
 	bool valid(int x);
 	void checkText();
