@@ -13,6 +13,7 @@ TextBox::TextBox()
 	initVariables();
 	initFont();
 	initText();
+	initBorder();
 }
 
 void TextBox::setSelected(bool sel)
@@ -43,6 +44,7 @@ void TextBox::updateText(Event event)
 void TextBox::renderText(RenderWindow &window)
 {
 	string temp = text.getString();
+	window.draw(border);
 	window.draw(text);
 }
 
@@ -51,7 +53,7 @@ void TextBox::initVariables()
 {
 	strtext.str("");
 	hasLimit = true;
-	limit = 25;
+	limit = 20;
 	selected = false;
 }
 
@@ -67,7 +69,16 @@ void TextBox::initText()
 	else text.setString("");
 	text.setCharacterSize(25);
 	text.setFillColor(Color::Black);
-	text.setPosition(Vector2f(300.f, 300.f));
+	text.setPosition(Vector2f(550.f, 580.f));
+}
+
+void TextBox::initBorder()
+{
+	border.setPosition(540.f, 570.f);
+	border.setSize(Vector2f(390.f, 60.f));
+	border.setFillColor(Color(217, 215, 241, 100));
+	border.setOutlineThickness(0.9f);
+	border.setOutlineColor(Color(136, 67, 242, 90));
 }
 
 bool TextBox::valid(int x)
@@ -87,6 +98,7 @@ void TextBox::inputLogic(int charType)
 {
 	if (charType == SPACE_KEY)
 	{
+		if (sz(strtext.str()) == 0) return;
 		checkText();
 		strtext.str("");
 		text.setString("_");

@@ -30,12 +30,14 @@ public:
 private:
 	Font font;
 	ostringstream strtext;
+	RectangleShape border;
 	bool hasLimit, selected;
 	int limit;
 
 	void initVariables();
 	void initFont();
 	void initText();
+	void initBorder();
 
 	bool valid(int x);
 	void checkText();
