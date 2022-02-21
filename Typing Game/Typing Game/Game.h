@@ -10,7 +10,9 @@
 #include <string>
 #include <sstream>
 #include "Background.h"
+#include "Obstacle.h"
 
+#define sz(a) (int)a.size()
 using namespace std;
 using namespace sf;
 
@@ -28,11 +30,15 @@ private:
 	int WINDOW_WIDTH;
 	int WINDOW_HEIGHT;
 	Texture background;
+	Texture human;
 	Background b1;
 	Background b2;
+	vector <Obstacle> obs;
 
 	// Game logic
 	unsigned points;
+	int maxObs;
+	int spawnObTimer, spawnObTimerMax;
 	bool isEnd;
 	float deltaTime;
 
@@ -47,6 +53,8 @@ private:
 	void updateText();
 	void renderText();
 	void renderBackground();
+	void renderObstacles();
+	void spawnOb();
 
 public:
 	//instructor, destructor

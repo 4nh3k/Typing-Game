@@ -96,7 +96,7 @@ void TextBox::checkText()
 
 void TextBox::inputLogic(int charType)
 {
-	if (charType == SPACE_KEY)
+	if (charType == SPACE_KEY || charType == ENTER_KEY)
 	{
 		if (sz(strtext.str()) == 0) return;
 		checkText();
@@ -104,7 +104,7 @@ void TextBox::inputLogic(int charType)
 		text.setString("_");
 		return;
 	}
-	if (charType != DELETE_KEY && charType != ENTER_KEY) strtext << static_cast<char>(charType);
+	if (charType != DELETE_KEY) strtext << static_cast<char>(charType);
 	else if (charType == DELETE_KEY && sz(strtext.str()) > 0) delLastChar();
 	text.setString(strtext.str() + "_");
 }

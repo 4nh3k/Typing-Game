@@ -31,6 +31,7 @@ void Game::update()
 {
 	pollEvents();
 	updateMousePos();
+	spawnOb();
 }
 
 void Game::render()
@@ -41,7 +42,7 @@ void Game::render()
 	//Draw game objects here
 	renderBackground();
 	renderText();
-
+	renderObstacles();
 	this->window->display();
 }
 
@@ -56,6 +57,9 @@ void Game::initVariables()
 	background.loadFromFile("../Data/background.png");
 	b1 = Background(background, 300, Vector2f(0, 500));
 	b2 = Background(background, 300, Vector2f(background.getSize().x, 500));
+	maxObs = 1;
+	spawnObTimer = 0;
+	spawnObTimerMax = 100;
 	window = nullptr;
 }
 
@@ -100,9 +104,25 @@ void Game::updateText()
 {
 	textbox.updateText(event);
 }
+
 void Game::setDeltaTime(float deltaTime)
 {
 	this->deltaTime = deltaTime;
+}
+
+void Game::spawnOb()
+{
+	Obstacle ob;
+	Font f;
+	f.loadFromFile("../Data/font.ttf");
+	human.loadFromFile("../Data/pp1.png");
+	ob = Obstacle(human, 300, Vector2f(1350.f, 470.f), String("test"), font);
+	if (spawnObTimer < spawnObTimerMax) spawnObTimer++;
+	else if (sz(obs) < maxObs)
+	{
+		spawnObTimer = 0;
+		obs.push_back(ob);
+	}
 }
 #pragma endregion
 
@@ -119,6 +139,16 @@ void Game::renderBackground()
 	this->window->draw(b1);
 	this->window->draw(b2);
 }
+void Game::renderObstacles()
+{
+	for (auto o : obs)
+	{
+		//cout << "?????\n";
+		o.Update(deltaTime);
+	}
+	for (auto o : obs) o.render(window);
+}
+
 #pragma endregion
 
 
