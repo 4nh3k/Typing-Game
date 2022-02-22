@@ -10,10 +10,12 @@ Obstacle::Obstacle(Texture& texture, int speed, Vector2f pos, String txt, Font &
 	setOrigin(Vector2f(0, 0));
 	setPosition(pos);
 	setTexture(texture);
+	textureSize = texture.getSize();
+	this->pos = pos;
 	this->speed = speed;
 	this->text.setString(txt);
-	this->text.setPosition(pos.x, pos.y - 80);
-	textureSize = texture.getSize();
+	this->text.setPosition(pos.x, pos.y - 50);
+	setScale(2.f, 2.f);
 }
 
 Obstacle::~Obstacle()
@@ -22,17 +24,13 @@ Obstacle::~Obstacle()
 
 void Obstacle::Update(float deltaTime)
 {
-	//cout << "!!!!!\n";
 	this->move(-(speed * deltaTime), 0);
 	this->text.move(-(speed * deltaTime), 0);
-
 }
 
 void Obstacle::render(RenderWindow* window)
 {
 	window->draw(*this);
-	//string temp = text.getString();
-	//cout << temp << '\n';
 	window->draw(this->text);
 }
 
@@ -40,6 +38,6 @@ void Obstacle::render(RenderWindow* window)
 void Obstacle::init(Font &font)
 {
 	text.setFont(font);
-	text.setCharacterSize(52);
-	text.setFillColor(Color::Blue);
+	text.setCharacterSize(20);
+	text.setFillColor(Color::Green);
 }

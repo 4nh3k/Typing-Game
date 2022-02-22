@@ -7,13 +7,18 @@ TextBox textbox;
 Game::Game()
 {
 	initVariables();
+	initFontandText();
 	initWindow();
-	//initFontandText();
 }
 
 Game::~Game()
 {
 	delete window;
+}
+
+int Game::Rand(int l, int r)
+{
+	return rand() % (r - l + 1) + l;
 }
 
 const bool Game::isRunning() const
@@ -26,19 +31,17 @@ const bool Game::endGame() const
 	return isEnd;
 }
 
-
 void Game::update()
 {
 	pollEvents();
 	updateMousePos();
-	spawnOb();
+	updateObstacle();
 }
 
 void Game::render()
 {
 	this->window->clear(Color::White);
 	
-
 	//Draw game objects here
 	renderBackground();
 	renderText();
@@ -57,9 +60,9 @@ void Game::initVariables()
 	background.loadFromFile("../Data/background.png");
 	b1 = Background(background, 300, Vector2f(0, 500));
 	b2 = Background(background, 300, Vector2f(background.getSize().x, 500));
-	maxObs = 1;
+	maxObs = 4;
 	spawnObTimer = 0;
-	spawnObTimerMax = 100;
+	spawnObTimerMax = 30;
 	window = nullptr;
 }
 
@@ -71,7 +74,7 @@ void Game::initWindow()
 
 void Game::initFontandText()
 {
-	
+	font.loadFromFile("../Data/font.ttf");
 }
 
 #pragma endregion
@@ -112,18 +115,28 @@ void Game::setDeltaTime(float deltaTime)
 
 void Game::spawnOb()
 {
-	Obstacle ob;
-	Font f;
-	f.loadFromFile("../Data/font.ttf");
 	human.loadFromFile("../Data/pp1.png");
-	ob = Obstacle(human, 300, Vector2f(1350.f, 470.f), String("test"), font);
-	if (spawnObTimer < spawnObTimerMax) spawnObTimer++;
-	else if (sz(obs) < maxObs)
+	ob = Obstacle(human, 300, Vector2f(1390.f, 430.f), String("test"), font);
+	obs.push_back(ob);
+}
+
+void Game::updateObstacle()
+{
+	for (auto o : obs)
+		if (o.getPosition().x <= 0) obs.pop_front();
+	if (sz(obs) < maxObs)
 	{
-		spawnObTimer = 0;
-		obs.push_back(ob);
+		if (spawnObTimer == spawnObTimerMax)
+		{
+			spawnOb();
+			spawnObTimer = 0;
+			spawnObTimerMax = Rand(110, 150);
+			//cout << spawnObTimerMax << '\n';
+		}
+		else spawnObTimer += 1;
 	}
 }
+
 #pragma endregion
 
 #pragma region Render
@@ -132,6 +145,7 @@ void Game::renderText()
 {
 	textbox.renderText(*this->window);
 }
+
 void Game::renderBackground()
 {
 	b1.Update(deltaTime);
@@ -141,9 +155,8 @@ void Game::renderBackground()
 }
 void Game::renderObstacles()
 {
-	for (auto o : obs)
+	for (auto &o : obs)
 	{
-		//cout << "?????\n";
 		o.Update(deltaTime);
 	}
 	for (auto o : obs) o.render(window);

@@ -9,6 +9,10 @@
 #include <ctime>
 #include <string>
 #include <sstream>
+#include <deque>
+#include <random>
+#include <chrono>
+#include <cassert>
 #include "Background.h"
 #include "Obstacle.h"
 
@@ -33,7 +37,8 @@ private:
 	Texture human;
 	Background b1;
 	Background b2;
-	vector <Obstacle> obs;
+	Obstacle ob;
+	deque <Obstacle> obs;
 
 	// Game logic
 	unsigned points;
@@ -55,7 +60,10 @@ private:
 	void renderBackground();
 	void renderObstacles();
 	void spawnOb();
+	void updateObstacle();
 
+	//others
+	int Rand(int l, int r);
 public:
 	//instructor, destructor
 	Game();
