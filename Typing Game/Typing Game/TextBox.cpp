@@ -25,7 +25,7 @@ void TextBox::setSelected(bool sel)
 
 string TextBox::getText()
 {
-	return strtext.str();
+	return preText;
 }
 
 void TextBox::updateText(Event event)
@@ -91,7 +91,8 @@ bool TextBox::valid(int x)
 
 void TextBox::checkText()
 {
-	cout << strtext.str() << '\n';
+	//cout << strtext.str() << '\n';
+	preText = strtext.str();
 }
 
 void TextBox::inputLogic(int charType)

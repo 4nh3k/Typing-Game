@@ -43,7 +43,7 @@ private:
 	// Game logic
 	unsigned points;
 	int maxObs;
-	int spawnObTimer, spawnObTimerMax;
+	int spawnObTimer, spawnObTimerMax, timerMin, timerMax;
 	bool isEnd;
 	float deltaTime;
 	vector <string> texts;

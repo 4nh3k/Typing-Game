@@ -66,6 +66,8 @@ void Game::initVariables()
 	maxObs = 4;
 	spawnObTimer = 0;
 	spawnObTimerMax = 30;
+	timerMax = 150;
+	timerMin = 100;
 	window = nullptr;
 }
 
@@ -146,8 +148,11 @@ void Game::updateObstacle()
 		if (spawnObTimer == spawnObTimerMax)
 		{
 			spawnOb();
+			if (timerMin > 70) timerMin--;
+			else if (timerMax > 90) timerMax--;
 			spawnObTimer = 0;
-			spawnObTimerMax = Rand(100, 140);
+			spawnObTimerMax = Rand(timerMin, timerMax);
+			cout << timerMax << " " << timerMin << " " << spawnObTimerMax << '\n';
 		}
 		else spawnObTimer += 1;
 	}
