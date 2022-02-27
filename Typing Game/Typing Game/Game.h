@@ -46,6 +46,8 @@ private:
 	int spawnObTimer, spawnObTimerMax;
 	bool isEnd;
 	float deltaTime;
+	vector <string> texts;
+	int numOfTexts;
 
 	// functions for game initialization
 	void initVariables();

@@ -1,6 +1,9 @@
 #include "Game.h"
 #include "TextBox.h"
 #include "Background.h"
+#include <fstream>
+#define _CRT_SECURE_NO_DEPRECATE
+
 #pragma region Public Functions
 TextBox textbox;
 
@@ -75,6 +78,19 @@ void Game::initWindow()
 void Game::initFontandText()
 {
 	font.loadFromFile("../Data/font.ttf");
+	ifstream fi ("texts.txt");
+	string s, cur = "";
+	fi >> s;
+	for (int i = 0; i < sz(s); ++i)
+	{
+		if (s[i] == '|')
+		{
+			texts.push_back(cur);
+			cur = "";
+		}
+		else cur += s[i];
+	}
+	numOfTexts = sz(texts);
 }
 
 #pragma endregion
@@ -116,7 +132,8 @@ void Game::setDeltaTime(float deltaTime)
 void Game::spawnOb()
 {
 	human.loadFromFile("../Data/pp1.png");
-	ob = Obstacle(human, 300, Vector2f(1390.f, 430.f), String("test"), font);
+	string cur = texts[Rand(0, numOfTexts - 1)];
+	ob = Obstacle(human, 300, Vector2f(1390.f, 430.f), (String)cur, font);
 	obs.push_back(ob);
 }
 
@@ -130,8 +147,7 @@ void Game::updateObstacle()
 		{
 			spawnOb();
 			spawnObTimer = 0;
-			spawnObTimerMax = Rand(110, 150);
-			//cout << spawnObTimerMax << '\n';
+			spawnObTimerMax = Rand(100, 140);
 		}
 		else spawnObTimer += 1;
 	}
