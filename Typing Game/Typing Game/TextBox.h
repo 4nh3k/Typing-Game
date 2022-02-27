@@ -21,7 +21,7 @@ public:
 	TextBox();
 	Text text;
 	//TextBox(int size, Color color, bool selected);
-
+	bool isDone;
 	void setSelected(bool sel);
 	string getText();
 	void updateText(Event event);
@@ -33,7 +33,7 @@ private:
 	RectangleShape border;
 	bool hasLimit, selected;
 	int limit; //bao nhieeu ddaay nhir
-
+	string preText;
 	void initVariables();
 	void initFont();
 	void initText();

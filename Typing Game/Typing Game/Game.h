@@ -39,6 +39,7 @@ private:
 	Background b2;
 	Obstacle ob;
 	deque <Obstacle> obs;
+	bool hasStart;
 
 	// Game logic
 	unsigned points;
@@ -58,6 +59,7 @@ private:
 	void pollEvents();
 	void updateMousePos();
 	void updateText();
+	void updateBackground();
 	void renderText();
 	void renderBackground();
 	void renderObstacles();

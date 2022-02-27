@@ -32,13 +32,17 @@ const bool Game::isRunning() const
 const bool Game::endGame() const
 {
 	return isEnd;
-}
+} 
 
 void Game::update()
 {
 	pollEvents();
 	updateMousePos();
-	updateObstacle();
+	if(hasStart==true)
+	{
+		updateBackground();
+		updateObstacle();
+	}
 }
 
 void Game::render()
@@ -58,6 +62,7 @@ void Game::render()
 
 void Game::initVariables()
 {
+	hasStart = false;
 	WINDOW_HEIGHT = 700;
 	WINDOW_WIDTH = 1400;
 	background.loadFromFile("../Data/background.png");
@@ -106,8 +111,14 @@ void Game::pollEvents()
 		case Event::Closed:
 			this->window->close(); break;
 		case Event::KeyPressed:
-			if (event.key.code == Keyboard::Escape) this->window->close();
-			else if (event.key.code == Keyboard::Enter) textbox.setSelected(true);  break;
+			if (event.key.code == Keyboard::Escape)
+				this->window->close();
+			else if (event.key.code == Keyboard::Enter)
+			{
+				hasStart = true;
+				textbox.setSelected(true); 
+			}
+			break;
 		case Event::TextEntered: textbox.updateText(event); break;
 		}
 	}
@@ -136,9 +147,25 @@ void Game::spawnOb()
 	ob = Obstacle(human, 300, Vector2f(1390.f, 430.f), (String)cur, font);
 	obs.push_back(ob);
 }
-
+void Game::updateBackground()
+{
+	b1.Update(deltaTime);
+	b2.Update(deltaTime);
+}
 void Game::updateObstacle()
 {
+	if (textbox.isDone == true)
+	{
+		if (obs.front().text.getString() == textbox.getText())
+		{
+			cout << "Dung roi ban oi" << endl;
+			obs.pop_front();
+		}
+		else
+		{
+			cout << "Sai roi ban oi" << endl;
+		}
+	}
 	for (auto o : obs)
 		if (o.getPosition().x <= 0) obs.pop_front();
 	if (sz(obs) < maxObs)
@@ -164,8 +191,6 @@ void Game::renderText()
 
 void Game::renderBackground()
 {
-	b1.Update(deltaTime);
-	b2.Update(deltaTime);
 	this->window->draw(b1);
 	this->window->draw(b2);
 }

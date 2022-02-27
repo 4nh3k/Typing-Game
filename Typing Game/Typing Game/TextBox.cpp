@@ -25,7 +25,8 @@ void TextBox::setSelected(bool sel)
 
 string TextBox::getText()
 {
-	return strtext.str();
+	isDone = false;
+	return preText;
 }
 
 void TextBox::updateText(Event event)
@@ -51,6 +52,7 @@ void TextBox::renderText(RenderWindow &window)
 
 void TextBox::initVariables()
 {
+	isDone = false;
 	strtext.str("");
 	hasLimit = true;
 	limit = 20;
@@ -91,7 +93,8 @@ bool TextBox::valid(int x)
 
 void TextBox::checkText()
 {
-	cout << strtext.str() << '\n';
+	preText = strtext.str();
+	isDone = true;
 }
 
 void TextBox::inputLogic(int charType)

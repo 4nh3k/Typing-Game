@@ -1,2 +1,13 @@
-﻿  Obstacle.cpp
-  Typing Game.vcxproj -> D:\Studying\GIT\Typing-Game\Typing Game\x64\Debug\Typing Game.exe
+﻿  Game.cpp
+C:\Users\Admin\source\repos\Typing-Game\Typing Game\Typing Game\Game.cpp(5,1): warning C4005: '_CRT_SECURE_NO_DEPRECATE': macro redefinition
+C:\Users\Admin\source\repos\Typing-Game\Typing Game\Typing Game\Game.cpp : message : see previous definition of '_CRT_SECURE_NO_DEPRECATE'
+C:\Users\Admin\source\repos\Typing-Game\Typing Game\Typing Game\Game.cpp(70,64): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  Typing Game.vcxproj -> C:\Users\Admin\Source\Repos\Typing-Game\Typing Game\x64\Debug\Typing Game.exe
