@@ -25,6 +25,7 @@ void TextBox::setSelected(bool sel)
 
 string TextBox::getText()
 {
+	isDone = false;
 	return preText;
 }
 
@@ -51,6 +52,7 @@ void TextBox::renderText(RenderWindow &window)
 
 void TextBox::initVariables()
 {
+	isDone = false;
 	strtext.str("");
 	hasLimit = true;
 	limit = 20;
@@ -75,7 +77,7 @@ void TextBox::initText()
 void TextBox::initBorder()
 {
 	border.setPosition(510.f, 570.f);
-	border.setSize(Vector2f(450.f, 60.f));
+	border.setSize(Vector2f(390.f, 60.f));
 	border.setFillColor(Color(217, 215, 241, 100));
 	border.setOutlineThickness(2.f);
 	border.setOutlineColor(Color(136, 67, 242, 100));
@@ -91,8 +93,8 @@ bool TextBox::valid(int x)
 
 void TextBox::checkText()
 {
-	//cout << strtext.str() << '\n';
 	preText = strtext.str();
+	isDone = true;
 }
 
 void TextBox::inputLogic(int charType)

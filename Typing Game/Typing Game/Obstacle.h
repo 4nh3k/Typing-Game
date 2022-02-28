@@ -22,11 +22,11 @@ public:
 	void Update(float deltaTime);
 	void render(RenderWindow* window);
 	void init(Font &f);
+	Text text;
 
 private:
 	int speed;
 	Vector2u textureSize;
 	Texture texture;
-	Text text;
 	Vector2f pos;
 };

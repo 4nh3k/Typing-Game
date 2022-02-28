@@ -39,5 +39,5 @@ void Obstacle::init(Font &font)
 {
 	text.setFont(font);
 	text.setCharacterSize(20);
-	text.setFillColor(Color(101, 193, 140));
+	text.setFillColor(Color(82, 74, 78));
 }

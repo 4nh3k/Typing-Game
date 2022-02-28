@@ -13,6 +13,7 @@
 #include <random>
 #include <chrono>
 #include <cassert>
+#include <sstream>
 #include "Background.h"
 #include "Obstacle.h"
 
@@ -26,7 +27,6 @@ class Game
 {
 private:
 	// something for window
-	RenderWindow* window;
 	Event event;
 	Font font;
 	Vector2i mousePosWindow;
@@ -39,9 +39,11 @@ private:
 	Background b2;
 	Obstacle ob;
 	deque <Obstacle> obs;
-
+	bool hasStart;
+	Text uiText;
 	// Game logic
-	unsigned points;
+	unsigned health;
+	int SPEED;
 	int maxObs;
 	int spawnObTimer, spawnObTimerMax, timerMin, timerMax;
 	bool isEnd;
@@ -58,6 +60,7 @@ private:
 	void pollEvents();
 	void updateMousePos();
 	void updateText();
+	void updateBackground();
 	void renderText();
 	void renderBackground();
 	void renderObstacles();
@@ -67,6 +70,9 @@ private:
 	//others
 	int Rand(int l, int r);
 public:
+	RenderWindow* window;
+	unsigned points;
+
 	//instructor, destructor
 	Game();
 	virtual ~Game();

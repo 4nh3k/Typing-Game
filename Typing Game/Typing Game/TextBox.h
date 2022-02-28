@@ -21,7 +21,7 @@ public:
 	TextBox();
 	Text text;
 	//TextBox(int size, Color color, bool selected);
-
+	bool isDone;
 	void setSelected(bool sel);
 	string getText();
 	void updateText(Event event);
@@ -34,7 +34,6 @@ private:
 	bool hasLimit, selected;
 	string preText;
 	int limit; //bao nhieeu ddaay nhir
-
 	void initVariables();
 	void initFont();
 	void initText();
