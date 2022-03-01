@@ -1,7 +1,7 @@
 # Typing Corona
-Just a cute typing game
+Just a beta of a cute typing game. We will upgrade this later :3
 
-You can download whole project below and view our stupid code : D
+You can download whole project below and view our stupid code : D 
 
 Or you can download this, run "Typing Corona/Typing Corona/Typing Corona.exe" to play: https://bit.ly/3tBPS4z
 
