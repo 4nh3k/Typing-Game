@@ -84,4 +84,4 @@ public:
 	void setDeltaTime(float deltaTime);
 	const bool isRunning() const;
 	const bool endGame() const;
-};
+}; 

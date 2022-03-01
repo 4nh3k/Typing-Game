@@ -76,7 +76,7 @@ void Game::initVariables()
 	b1 = Background(background, SPEED, Vector2f(0, 500));
 	b2 = Background(background, SPEED, Vector2f(background.getSize().x, 500));
 	Player = Animation(player, Vector2i(3, 1), Vector2f(5.f, 430.f), 0.1);
-	maxObs = 5;
+	maxObs = 6;
 	spawnObTimer = 0;
 	spawnObTimerMax = 90;
 	timerMax = 100;
@@ -86,7 +86,7 @@ void Game::initVariables()
 
 void Game::initWindow()
 {
-	window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Typing racing", Style::Close | Style::Titlebar);
+	window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Typing Corona", Style::Close | Style::Titlebar);
 	window->setFramerateLimit(60);
 }
 
@@ -188,13 +188,8 @@ void Game::updateObstacle()
 	{
 		if (obs.front().text.getString() == textbox.getText())
 		{
-			cout << "Dung roi ban oi" << endl;
 			obs.pop_front();
 			points += 1;
-		}
-		else
-		{
-			cout << "Sai roi ban oi" << endl;
 		}
 	}
 
@@ -225,12 +220,11 @@ void Game::updateObstacle()
 			/// <summary>
 			/// đống này để nhanh dần thoi
 			/// </summary>
-			if (timerMin > 40) timerMin--;
-			else if (timerMax > 60) timerMax--;
+			if (timerMin > 35) timerMin--;
+			else if (timerMax > 55) timerMax--;
 
 			spawnObTimer = 0;
 			spawnObTimerMax = Rand(timerMin, timerMax);
-			cout << timerMax << " " << timerMin << " " << spawnObTimerMax << '\n';
 		}
 		else spawnObTimer += 1;
 	}

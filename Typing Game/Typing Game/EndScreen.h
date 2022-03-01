@@ -57,7 +57,7 @@ private:
 		ss << "YOUR POINTS IS: " << points;
 		text[1].setString(ss.str());
 
-		window = new RenderWindow(VideoMode(500, 500), "Typing racing", Style::Close | Style::Titlebar);
+		window = new RenderWindow(VideoMode(500, 500), "Typing Corona", Style::Close | Style::Titlebar);
 		window->setFramerateLimit(60);
 	}
 
