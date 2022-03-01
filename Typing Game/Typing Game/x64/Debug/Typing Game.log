@@ -1,8 +1,13 @@
-﻿  main.cpp
-D:\Studying\GIT\Typing-Game\Typing Game\Typing Game\main.cpp(3,64): warning C4244: 'argument': conversion from '_Rep' to 'unsigned int', possible loss of data
+﻿  Game.cpp
+D:\Studying\GIT\Typing-Game\Typing Game\Typing Game\Game.cpp(5,1): warning C4005: '_CRT_SECURE_NO_DEPRECATE': macro redefinition
+D:\Studying\GIT\Typing-Game\Typing Game\Typing Game\Game.cpp : message : see previous definition of '_CRT_SECURE_NO_DEPRECATE'
+D:\Studying\GIT\Typing-Game\Typing Game\Typing Game\Game.cpp(74,66): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              _Rep=__int64
+              T=unsigned int
           ]
-D:\Studying\GIT\Typing-Game\Typing Game\Typing Game\main.cpp(6,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+          and
+          [
+              T=float
+          ]
   Typing Game.vcxproj -> D:\Studying\GIT\Typing-Game\Typing Game\x64\Debug\Typing Game.exe
