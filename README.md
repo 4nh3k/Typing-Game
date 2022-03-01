@@ -1,5 +1,5 @@
-# Typing-Game
-Just a typing game
+# Typing Corona
+Just a cute typing game
 
 You can download whole project below and view our stupid code : D
 
