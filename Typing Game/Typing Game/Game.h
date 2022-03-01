@@ -14,6 +14,7 @@
 #include <chrono>
 #include <cassert>
 #include <sstream>
+#include "Animation.h"
 #include "Background.h"
 #include "Obstacle.h"
 
@@ -35,6 +36,8 @@ private:
 	int WINDOW_HEIGHT;
 	Texture background;
 	Texture human;
+	Texture player;
+	Animation Player;
 	Background b1;
 	Background b2;
 	Obstacle ob;

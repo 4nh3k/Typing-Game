@@ -40,6 +40,7 @@ void Game::update()
 	updateMousePos();
 	if(hasStart==true)
 	{
+		Player.Update(deltaTime);
 		updateBackground();
 		updateObstacle();
 		updateText();
@@ -51,6 +52,7 @@ void Game::render()
 	this->window->clear(Color(253, 239, 244));
 	
 	//Draw game objects here
+	this->window->draw(Player);
 	renderBackground();
 	renderText();
 	renderObstacles();
@@ -69,9 +71,11 @@ void Game::initVariables()
 	WINDOW_HEIGHT = 700;
 	WINDOW_WIDTH = 1400;
 	SPEED = 350; 
+	player.loadFromFile("../Data/run.png");
 	background.loadFromFile("../Data/background.png");
 	b1 = Background(background, SPEED, Vector2f(0, 500));
 	b2 = Background(background, SPEED, Vector2f(background.getSize().x, 500));
+	Player = Animation(player, Vector2i(3, 1), Vector2f(5.f, 430.f), 0.1);
 	maxObs = 5;
 	spawnObTimer = 0;
 	spawnObTimerMax = 90;
@@ -198,14 +202,19 @@ void Game::updateObstacle()
 	/// Chỉnh cho kim biến mất lúc gặp corona ở đây nè
 	/// </summary>
 	for (auto o : obs)
-		if (o.getPosition().x <= 0)
+	{
+		FloatRect playerBox = Player.getGlobalBounds();
+		FloatRect objectBox = o.getGlobalBounds();
+		if ((o.getPosition().x <= 0)||playerBox.intersects(objectBox))
 		{
-			obs.pop_front(), health -= 1; if (health == 0)
+			obs.pop_front(), health -= 1; 
+			if (health == 0)
 			{
 				isEnd = true;
 				return;
 			}
 		}
+	}
 
 
 	if (sz(obs) < maxObs)
