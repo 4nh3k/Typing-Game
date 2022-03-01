@@ -5,11 +5,12 @@ Animation::Animation()
 
 }
 
-Animation::Animation(sf::Texture& texture, sf::Vector2i frameNum, float frameTime)
+Animation::Animation(sf::Texture& texture, sf::Vector2i frameNum,sf::Vector2f pos, float frameTime)
 {
 	m_frameNum = frameNum;
 	m_frameTime = frameTime;
 	this->setTexture(texture);
+	this->setPosition(pos);
 	m_currentFrame = sf::Vector2i(0, 0);
 	m_currentTime = 0;
 	CalculateRectSize();

@@ -5,7 +5,7 @@ class Animation : public sf::Sprite
 {
 public:
 	Animation();
-	Animation(sf::Texture &texture, sf::Vector2i frameNum, float frameTime);
+	Animation(sf::Texture &texture, sf::Vector2i frameNum, sf::Vector2f pos, float frameTime);
 	void CalculateRectSize();
 	void CalculateRectUV();
 	void ApplyRect();
