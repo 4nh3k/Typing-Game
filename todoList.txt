@@ -1,29 +1,36 @@
-cho cái xe lên màn hình
-cho cái chữ lên màn hình
-cho cái chỗ nhập lên màn hình
-tính số lần nhập đúng sai
-tính wpm
+* Background //Done
 
-2 chế độ: Luyện tập & Thi đấu
-****Thi đấu******
-cho cái xe nó chạy
-	có cần cái nhập được chuỗi đúng càng dài thì chạy càng nhanh không :v 
-thêm một thằng bot
-xem ai thắng ai thua
-*****************
+* Obstacle //Done. Can code random images for obstacles
 
-****Luyện tập****
-2 làn đường
-Màn hình chạy từ từ từ phải qua (chạy từ từ thôi :v không thì chia 3 độ khó)
-Gặp một vật cản thì gõ đúng từ để xe lách qua làn đường khác
-Gõ chậm quá thì màn hình chạy dồn xe vào biên bên trái là thua
-*****************
+* Corona //Done. Maybe can change its color to red when a obstacle hit it.
 
-thêm cái shop mua xe :3 mua nhân vật
+* Textbox for player to type //Done
 
-thêm cái biểu đồ 
+* Login system
 
-nếu quá rảnh lon thì thêm một mode con khủng long để luyện tập
+- Input user list from users.txt
 
-// thiếu gì ngân đù bổ sung đi
-//òa
+- Draw sign in, sign up buttons
+
+- If player click sign in button:
+
+	Draw username and password input field
+
+	Draw submit button
+	
+	Draw back button
+	
+	Sign in successfully -> a window pop out allowing player to choose play or view practice history
+
+- If player click sign up button
+
+	Draw username, passworn, confirm password input field (change password to **)
+	
+	Draw submit button
+	
+	Draw back button
+	
+	Player submit -> write information to users.txt
+	
+	Sign up successfully -> go back to first window
+	
