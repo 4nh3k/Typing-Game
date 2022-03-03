@@ -151,6 +151,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="TextBox.cpp" />
+    <ClCompile Include="TypeBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="TextBox.h" />
+    <ClInclude Include="TypeBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

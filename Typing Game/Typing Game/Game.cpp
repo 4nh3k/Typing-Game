@@ -100,7 +100,7 @@ void Game::initFontandText()
 	{
 		if (s[i] == '|')
 		{
-			texts.push_back(cur);
+			if(sz(cur) > 2) texts.push_back(cur);
 			cur = "";
 		}
 		else cur += s[i];

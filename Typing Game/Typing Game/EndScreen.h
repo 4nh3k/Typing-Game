@@ -50,12 +50,16 @@ private:
 		text[0].setCharacterSize(20);
 		text[1].setCharacterSize(18);
 
-		text[0].setPosition(150, 200);
-		text[1].setPosition(98, 250);
 		text[0].setString("GAME OVER");
 		stringstream ss;
 		ss << "YOUR POINTS IS: " << points;
 		text[1].setString(ss.str());
+
+		text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
+		text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
+
+		text[0].setPosition(250,200);
+		text[1].setPosition(250, 250);
 
 		window = new RenderWindow(VideoMode(500, 500), "Typing Corona", Style::Close | Style::Titlebar);
 		window->setFramerateLimit(60);
