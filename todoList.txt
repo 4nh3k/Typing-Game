@@ -6,7 +6,7 @@
 
 * Textbox for player to type //Done
 
-* Login system
+* Login system //Done
 
 - Input user list from users.txt
 
