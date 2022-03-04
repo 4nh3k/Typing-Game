@@ -49,6 +49,12 @@ void TextBox::renderText(RenderWindow &window)
 	window.draw(text);
 }
 
+void TextBox::setstr(string x)
+{
+	text.setString(x);
+	strtext.str(x);
+}
+
 
 void TextBox::initVariables()
 {

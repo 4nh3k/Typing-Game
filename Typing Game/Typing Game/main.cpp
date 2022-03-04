@@ -312,6 +312,7 @@ bool login()
 }
 
 #pragma endregion
+
 int main()
 {
     srand(time(NULL));
@@ -319,18 +320,29 @@ int main()
     if (!isLogged) return 0;
     Game game;
     Clock clock;
-    while (game.isRunning() && !game.endGame())
+    while (game.isRunning())
     {
         game.setDeltaTime(clock.restart().asSeconds());
-        game.update();
+        game.update(game.isEnd);
         game.render();
+        if (game.isEnd)
+        {
+            EndScreen end(game.points);
+            bool playAgain = false;
+            while (end.isRunning())
+            {
+                playAgain = end.update();
+                end.render();
+                if (playAgain) end.window->close();
+            }
+            if (!playAgain)
+            {
+                game.window->close();
+                break;
+            }
+            else game.reset();
+        }
     }
-    EndScreen end(game.points);
-    game.window->close();
-    while (end.isRunning())
-    {
-        end.update();
-        end.render();
-    }
+    
     return 0;
 }

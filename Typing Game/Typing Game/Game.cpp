@@ -29,17 +29,14 @@ const bool Game::isRunning() const
 	return window->isOpen();
 }
 
-const bool Game::endGame() const
-{
-	return isEnd;
-} 
 
-void Game::update()
+void Game::update(bool type)
 {
-	pollEvents();
-	updateMousePos();
-	if(hasStart==true)
+	if (!hasStart) pollEvents();
+	updateMousePos(); 
+	if(hasStart==true && !type)
 	{
+		pollEvents();
 		Player.Update(deltaTime);
 		updateBackground();
 		updateObstacle();
@@ -59,6 +56,12 @@ void Game::render()
 	this->window->display();
 }
 
+void Game::reset()
+{
+	initVariables();
+	initFontandText();
+}
+
 #pragma endregion
 
 #pragma region Initialization
@@ -66,6 +69,7 @@ void Game::render()
 void Game::initVariables()
 {
 	hasStart = false;
+	isEnd = false;
 	health = 5;
 	points = 0;
 	WINDOW_HEIGHT = 700;
@@ -76,12 +80,15 @@ void Game::initVariables()
 	b1 = Background(background, SPEED, Vector2f(0, 500));
 	b2 = Background(background, SPEED, Vector2f(background.getSize().x, 500));
 	Player = Animation(player, Vector2i(3, 1), Vector2f(5.f, 430.f), 0.1);
+	textbox.setSelected(false);
+	textbox.setstr("");
+	obs.clear();
 	maxObs = 6;
 	spawnObTimer = 0;
 	spawnObTimerMax = 90;
 	timerMax = 100;
 	timerMin = 80;
-	window = nullptr;
+	//window = nullptr;
 }
 
 void Game::initWindow()
@@ -93,6 +100,7 @@ void Game::initWindow()
 void Game::initFontandText()
 {
 	font.loadFromFile("../Data/font.ttf");
+	texts.clear();
 	ifstream fi ("texts.txt");
 	string s, cur = "";
 	fi >> s;
@@ -228,6 +236,11 @@ void Game::updateObstacle()
 		}
 		else spawnObTimer += 1;
 	}
+
+	for (auto& o : obs)
+	{
+		o.Update(deltaTime);
+	}
 }
 
 #pragma endregion
@@ -248,10 +261,6 @@ void Game::renderBackground()
 
 void Game::renderObstacles()
 {
-	for (auto &o : obs)
-	{
-		o.Update(deltaTime);
-	}
 	for (auto o : obs) o.render(window);
 }
 

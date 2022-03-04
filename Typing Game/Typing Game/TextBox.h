@@ -24,6 +24,7 @@ public:
 	string getText();
 	void updateText(Event event);
 	void renderText(RenderWindow &window); 
+	void setstr(string x);
 
 private:
 	Font font;

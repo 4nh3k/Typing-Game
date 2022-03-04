@@ -49,7 +49,6 @@ private:
 	int SPEED;
 	int maxObs;
 	int spawnObTimer, spawnObTimerMax, timerMin, timerMax;
-	bool isEnd;
 	float deltaTime;
 	vector <string> texts;
 	int numOfTexts;
@@ -79,9 +78,10 @@ public:
 	//instructor, destructor
 	Game();
 	virtual ~Game();
-	void update();
+	bool isEnd;
+	void update(bool type);
 	void render();
+	void reset();
 	void setDeltaTime(float deltaTime);
 	const bool isRunning() const;
-	const bool endGame() const;
 }; 

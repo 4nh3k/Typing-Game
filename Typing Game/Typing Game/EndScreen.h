@@ -1,5 +1,6 @@
 #pragma once
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include <sstream>
 #include <iostream>
 
@@ -9,6 +10,7 @@ using namespace std;
 class EndScreen
 {
 public:
+	RenderWindow* window;
 	EndScreen(int p = 0) : points(p) { init(); }
 	~EndScreen() 
 	{
@@ -20,9 +22,9 @@ public:
 		return window->isOpen();
 	}
 
-	void update()
+	bool update()
 	{
-		pollEvents();
+		return pollEvents();
 	}
 
 	void render()
@@ -30,6 +32,7 @@ public:
 		window->clear(Color(253, 239, 244));
 		window->draw(text[0]);
 		window->draw(text[1]);
+		window->draw(_again);
 		window->display();
 	}
 
@@ -38,7 +41,8 @@ private:
 	Font font;
 	Text text[2];
 	Event event;
-	RenderWindow* window;
+	Texture again;
+	Sprite _again;
 	void init()
 	{
 		font.loadFromFile("../Data/font.ttf");
@@ -63,9 +67,14 @@ private:
 
 		window = new RenderWindow(VideoMode(500, 500), "Typing Corona", Style::Close | Style::Titlebar);
 		window->setFramerateLimit(60);
+
+		again.loadFromFile("../Data/back.png");
+		_again = Sprite(again);
+		_again.setOrigin(_again.getLocalBounds().width / 2, _again.getLocalBounds().height / 2);
+		_again.setPosition(250, 350);
 	}
 
-	void pollEvents()
+	bool pollEvents()
 	{
 		while (this->window->pollEvent(this->event))
 		{
@@ -76,8 +85,17 @@ private:
 			case Event::KeyPressed:
 				if (event.key.code == Keyboard::Escape)
 					this->window->close();
+			case Event::MouseButtonPressed:
+				if (event.key.code == Mouse::Left)
+				{
+					Vector2i mousePosWindow = Mouse::getPosition(*window);
+					Vector2f mousePosView = window->mapPixelToCoords(mousePosWindow);
+					if (_again.getGlobalBounds().contains(mousePosView))
+						return true;
+				} break;
 			}
 		}
+		return false;
 	}
 
 };
