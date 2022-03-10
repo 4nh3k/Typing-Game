@@ -92,9 +92,15 @@ bool login()
                     pass.setSelected(false);
                     confirmPass.setSelected(false);
                     if (_login.getGlobalBounds().contains(mousePosView))
+                    {
                         scene = 2;
+                        wrong = false;
+                    }
                     if (_regist.getGlobalBounds().contains(mousePosView))
+                    {
                         scene = 3;
+                        eType = 0;
+                    }
                     continue;
                 }
 
@@ -208,7 +214,11 @@ bool login()
 
                 if (scene == 5)
                 {
-                    if (_login.getGlobalBounds().contains(mousePosView)) scene = 2;
+                    if (_login.getGlobalBounds().contains(mousePosView))
+                    {
+                        scene = 2;
+                        wrong = false;
+                    }
                     continue;
                 }
             }
